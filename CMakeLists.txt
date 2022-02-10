@@ -1,6 +1,13 @@
-cmake_minimum_required(VERSION 2.6)
+cmake_minimum_required(VERSION 3.22)
 
-project(FreeImage)
+project(FreeImage VERSION 3.18.0)
+
+# Check parameters
+include(CheckIncludeFile)
+include(CheckIncludeFileCXX)
+include(CheckFunctionExists)
+include(CheckTypeSize)
+include(CMakePackageConfigHelpers)
 
 file(GLOB FreeImage_SRC
     Source/*.h
@@ -154,5 +161,32 @@ include_directories(Source/OpenEXR/Imath)
 include_directories(Source/OpenEXR/IexMath)
 include_directories(Source/ZLib)
 
-add_definitions(-DOPJ_STATIC -DLIBRAW_NODLL -DFREEIMAGE_LIB)
-add_library(FreeImage STATIC ${FreeImage_SRC})
+add_definitions(-DOPJ_STATIC -DLIBRAW_NODLL -DFREEIMAGE_LIB -DPNG_ARM_NEON_OPT=0)
+add_library(freeimage STATIC ${FreeImage_SRC})
+
+add_subdirectory(TestAPI)
+
+install(
+  TARGETS freeimage
+  EXPORT FreeImageTargets
+  LIBRARY DESTINATION lib
+  ARCHIVE DESTINATION lib
+  RUNTIME DESTINATION bin
+  INCLUDES
+  DESTINATION include)
+
+install(
+  EXPORT FreeImageTargets
+  FILE FreeImageTargets.cmake
+  NAMESPACE freeimage::
+  DESTINATION lib/cmake/freeimage)
+
+write_basic_package_version_file(
+  ${CMAKE_CURRENT_BINARY_DIR}/FreeImageConfigVersion.cmake
+  COMPATIBILITY SameMajorVersion)
+
+install(FILES ${CMAKE_CURRENT_LIST_DIR}/FreeImageConfig.cmake
+              ${CMAKE_CURRENT_BINARY_DIR}/FreeImageConfigVersion.cmake
+        DESTINATION lib/cmake/freeimage)
+
+install(FILES Source/FreeImage.h DESTINATION include)
