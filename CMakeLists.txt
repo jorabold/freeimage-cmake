@@ -109,22 +109,22 @@ file(GLOB FreeImage_SRC
     Source/LibJPEG/jutils.c
     Source/LibJPEG/transupp.c
 
-    # LibPNG
-    Source/LibPNG/./png.c
-    Source/LibPNG/./pngerror.c
-    Source/LibPNG/./pngget.c
-    Source/LibPNG/./pngmem.c
-    Source/LibPNG/./pngpread.c
-    Source/LibPNG/./pngread.c
-    Source/LibPNG/./pngrio.c
-    Source/LibPNG/./pngrtran.c
-    Source/LibPNG/./pngrutil.c
-    Source/LibPNG/./pngset.c
-    Source/LibPNG/./pngtrans.c
-    Source/LibPNG/./pngwio.c
-    Source/LibPNG/./pngwrite.c
-    Source/LibPNG/./pngwtran.c
-    Source/LibPNG/./pngwutil.c
+    # # LibPNG
+    # Source/LibPNG/./png.c
+    # Source/LibPNG/./pngerror.c
+    # Source/LibPNG/./pngget.c
+    # Source/LibPNG/./pngmem.c
+    # Source/LibPNG/./pngpread.c
+    # Source/LibPNG/./pngread.c
+    # Source/LibPNG/./pngrio.c
+    # Source/LibPNG/./pngrtran.c
+    # Source/LibPNG/./pngrutil.c
+    # Source/LibPNG/./pngset.c
+    # Source/LibPNG/./pngtrans.c
+    # Source/LibPNG/./pngwio.c
+    # Source/LibPNG/./pngwrite.c
+    # Source/LibPNG/./pngwtran.c
+    # Source/LibPNG/./pngwutil.c
 
     Source/ZLib/*.h
     Source/ZLib/*.c
@@ -143,7 +143,7 @@ include_directories(Source/LibJXR/image/sys)
 include_directories(Source/LibJXR/image/x86)
 include_directories(Source/LibJXR/jxrgluelib)
 include_directories(Source/LibOpenJPEG)
-include_directories(Source/LibPNG)
+# include_directories(Source/LibPNG)
 include_directories(Source/LibRawLite)
 include_directories(Source/LibRawLite/dcraw)
 include_directories(Source/LibRawLite/internal)
